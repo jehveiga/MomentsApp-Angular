@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import './styles/settings/main.scss';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: var(--mp-color-default);
+  font-family: var(--df-font-family-base);
+
+  a{
+    text-decoration: none;
+    color: var(--mp-color-default);
+    transition: 0.4s;
+
+    &:hover{
+      color: var(--mp-color-link);
+    }
+  }
+}
+
+
