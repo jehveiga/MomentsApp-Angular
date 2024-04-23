@@ -1,3 +1,47 @@
-:host {
-  display: block;
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  border-bottom: 1px solid var(--mo-color-default-light);
+
+  .brand,
+  .links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .brand {
+    img {
+      width: 40px;
+      margin-right: 0.6em;
+    }
+
+    &:hover {
+      h2 {
+        color: var(--mp-color-link);
+      }
+    }
+  }
+
+  .links {
+    li {
+      margin-right: 1em;
+      list-style: none;
+
+      a {
+        padding: 0.1em 0.3em;
+      }
+    }
+
+    #add {
+      a {
+        color: var(--mp-color-link);
+      }
+
+      &:hover {
+        background-color: var(--mp-color-background);
+      }
+    }
+  }
 }
