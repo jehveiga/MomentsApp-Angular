@@ -40,6 +40,15 @@
         color: var(--mp-color-default);
         font-size: 0.8em;
       }
+
+      .validation-error{
+        p{
+          color: var(--mp-color-error-form);
+          margin-top: 0.4em;
+          border-left: 3px solid var(--mp-color-error-form);
+          padding-left: 0.2em;
+        }
+      }
     }
 
     input[type="submit"]{

@@ -1,11 +1,49 @@
-<form>
+<form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm">
   <div class="form-group">
     <label for="title">Título</label>
-    <input type="text" placeholder="Coloque um título" required />
+    <input
+      type="text"
+      placeholder="Coloque um título"
+      formControlName="title"
+      minlength="3"
+      required
+    />
+    <div
+      *ngIf="
+        title.invalid &&
+        formDir.submitted &&
+        (description.dirty || description.touched)
+      "
+      class="validation-error"
+    >
+      <p *ngIf="title.errors?.['required'] ">O Título é obrigatório.</p>
+      <p *ngIf="title.errors?.['minLength'] ">
+        O campo deve ter mais que 3 caracteres.
+      </p>
+    </div>
   </div>
   <div class="form-group">
     <label for="description">Descrição</label>
-    <textarea placeholder="O que aconteceu lá?" required></textarea>
+    <textarea
+      placeholder="O que aconteceu lá?"
+      formControlName="description"
+      required
+    ></textarea>
+    <div
+      *ngIf="
+        description.invalid &&
+        formDir.submitted &&
+        (description.dirty || description.touched)
+      "
+      class="validation-error"
+    >
+      <p *ngIf="description.errors?.['required'] ">
+        A descrição é obrigatória.
+      </p>
+      <p *ngIf="description.errors?.['maxLength'] ">
+        O campo deve ter menos de 150 caracteres.
+      </p>
+    </div>
   </div>
   <div class="form-group">
     <label for="image">Coloque a foto que mais marcou o momento: </label>
