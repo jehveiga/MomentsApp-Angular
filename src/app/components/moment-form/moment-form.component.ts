@@ -2,10 +2,13 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
 } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Moment } from '../../interfaces/Moment';
 
 @Component({
   selector: 'app-moment-form',
@@ -16,8 +19,11 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MomentFormComponent implements OnInit {
-  // Valor da varível chegará através do componente que está chamando
+  // Valor da varível chegará através do componente pai que passará através de parametro
   @Input() btnText!: string;
+
+  // Propriedade responsável para envio dos dados para o componente Pai que no caso enviará os dados do Form
+  @Output() onSubmit = new EventEmitter<Moment>();
   momentForm!: FormGroup;
 
   ngOnInit(): void {
@@ -38,12 +44,22 @@ export class MomentFormComponent implements OnInit {
     return this.momentForm.get("description")!;
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+
+    // Adicionando o arquivo na propriedade image do form
+    this.momentForm.patchValue({
+      image: file,
+    });
+  }
+
   submit() {
     if (this.momentForm.invalid)
       return;
 
+    console.log(this.momentForm);
 
-
-    console.log('Enviou abestado');
+    // Executando a emissão para o componente Pai passando os valores do momentForm
+    this.onSubmit.emit(this.momentForm.value);
   }
 }
