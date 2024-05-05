@@ -17,5 +17,6 @@ export class MomentService {
   createMoment(formData: FormData): Observable<FormData> {
     return this.http.post<FormData>(this.apiUrl, formData)
   }
+  
 
 }

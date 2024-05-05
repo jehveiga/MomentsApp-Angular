@@ -15,7 +15,7 @@ import { Moment } from '../../interfaces/Moment';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './moment-form.component.html',
-  styleUrl: './moment-form.component.css',
+  styleUrl: './moment-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MomentFormComponent implements OnInit {
@@ -56,8 +56,6 @@ export class MomentFormComponent implements OnInit {
   submit() {
     if (this.momentForm.invalid)
       return;
-
-    console.log(this.momentForm);
 
     // Executando a emissão para o componente Pai passando os valores do momentForm
     this.onSubmit.emit(this.momentForm.value);
