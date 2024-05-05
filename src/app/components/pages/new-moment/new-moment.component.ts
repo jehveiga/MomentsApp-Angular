@@ -37,10 +37,13 @@ export class NewMomentComponent {
     }
 
     // enviar para o service para ser gerenciado para API
-    await this.momentService.createMoment(formData).subscribe();
-
-    this.messagesService.add("Momento adicionado com sucesso!");
-
-    this.router.navigate(['/']);
+    this.momentService.createMoment(formData).subscribe(
+      {
+        complete: () => {
+          this.messagesService.add("Momento adicionado com sucesso!");
+          this.router.navigate(['/']);
+        }
+      }
+    );
   }
 }
