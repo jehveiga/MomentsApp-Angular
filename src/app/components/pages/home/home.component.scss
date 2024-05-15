@@ -1,3 +1,50 @@
-:host {
-  display: block;
+.home-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  h1{
+    margin-bottom: 0.5em;
+  }
+
+  .moments-container{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 80%;
+    margin: 0 auto;
+    justify-content: space-between;
+
+    .moment{
+      width: 32%;
+      margin-bottom: 1em;
+      text-align: center;
+
+      img{
+        width: 100%;
+        margin-bottom: 1em;
+      }
+
+      h2, p{
+        margin-bottom: 1em;
+      }
+
+      .date{
+        font-size: 0.7em;
+        font-style: italic;
+      }
+
+      a{
+        color: var(--mp-color-link);
+        padding: .3em .6em;
+
+        &hover{
+          background-color: var(--mp-color-background)
+        }
+      }
+    }
+
+  }
+
+
 }

@@ -1,8 +1,23 @@
-<div class="home-container"></div>
-<h1>Veja oque estão compartilhando</h1>
-<!-- form de busca -->
-|
-<div *ngFor="let moment of allMoments$ | async">
-  <h2>{{ moment.title }}</h2>
-  <h2>{{ moment.createdAt | dataFormatada }}</h2>
+<div class="home-container">
+  <h1>Veja oque estão compartilhando</h1>
+  <!-- form de busca -->
+
+  <div *ngIf="allMoments$.subscribe(); else noMoments">
+    <div class="moments-container">
+      <div class="moment" *ngFor="let moment of allMoments$ | async">
+        <img
+          src="{{ baseApiUrl }}uploads/{{ moment.image }}"
+          alt="{{ moment.title }}"
+        />
+        <h3>{{ moment.title }}</h3>
+
+        <p class="date">Em: {{ moment.createdAt | dataFormatada }}</p>
+        <p>Comentários: {{ moment.comments?.length ?? 0 }}</p>
+        <p><a [routerLink]="['moments/{{ moment.id}}']">Detalhes</a></p>
+      </div>
+    </div>
+  </div>
+  <ng-template #noMoments>
+    <h1>Não há momentos cadastrados!</h1>
+  </ng-template>
 </div>

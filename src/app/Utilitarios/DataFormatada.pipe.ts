@@ -10,7 +10,7 @@ export class DataFormatadaPipePipe implements PipeTransform {
   transform(value: string): string {
     if (value) {
       const datePipe = new DatePipe('en-US');
-      const dataFormatada = datePipe.transform(value, 'dd/MM/yyyy HH:mm:ss');
+      const dataFormatada = datePipe.transform(value, 'dd/MM/yyyy');
       return dataFormatada || ''; // Retorna uma string vazia se a data formatada for nula
     }
 
