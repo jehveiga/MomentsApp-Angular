@@ -12,18 +12,18 @@
     </form>
   </div>
 
-  <div *ngIf="allMoments$.subscribe(); else noMoments">
+  <div *ngIf="allMoments$ | async as moments; else noMoments">
     <div class="moments-container">
-      <div class="moment" *ngFor="let moment of allMoments$ | async">
+      <div class="moment" *ngFor="let moment of moments">
         <img
-          src="{{ baseApiUrl }}uploads/{{ moment.image }}"
-          alt="{{ moment.title }}"
+          [src]="baseApiUrl + 'uploads/' + moment.image"
+          [alt]="moment.title"
         />
         <h3>{{ moment.title }}</h3>
 
         <p class="date">Em: {{ moment.createdAt | dataFormatada }}</p>
         <p>Comentários: {{ moment.comments?.length ?? 0 }}</p>
-        <p><a [routerLink]="['moments/{{ moment.id}}']">Detalhes</a></p>
+        <p><a [routerLink]="['moments', moment.id]">Detalhes</a></p>
       </div>
     </div>
   </div>

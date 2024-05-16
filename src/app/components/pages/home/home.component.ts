@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.allMoments$ = this.momentService.getMoments().pipe(
+    this.moments$ = this.momentService.getMoments().pipe(
       map((response: Response<Moment[]>) =>
         response.data),
       catchError(error => {
@@ -39,18 +39,17 @@ export class HomeComponent implements OnInit {
       })
     );
 
-    this.moments$ = this.allMoments$
+    this.allMoments$ = this.moments$
   }
 
   search(event: any): void {
     const target = event.target as HTMLInputElement;
     const value = target.value;
 
-    // Use pipe e map para filtrar os momentos e atribuir a lista filtrada a allMoments$
-    this.allMoments$ = this.moments$.pipe(
-      map((moments: Moment[]) => {
-        return moments.filter(moment => moment.title.toLowerCase().includes(value));
-      })
-    );
+    if (this.moments$) {
+      this.allMoments$ = this.moments$.pipe(
+        map((moments: Moment[]) => moments.filter(moment => moment.title.toLowerCase().includes(value)))
+      );
+    }
   }
 }
