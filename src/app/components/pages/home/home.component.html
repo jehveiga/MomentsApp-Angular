@@ -1,6 +1,16 @@
 <div class="home-container">
   <h1>Veja oque estão compartilhando</h1>
-  <!-- form de busca -->
+  <div class="search-container">
+    <form>
+      <fa-icon [icon]="faSearch"></fa-icon>
+      <input
+        type="text"
+        placeholder="Ou busque por um momento..."
+        autocomplete="off"
+        (input)="search($event)"
+      />
+    </form>
+  </div>
 
   <div *ngIf="allMoments$.subscribe(); else noMoments">
     <div class="moments-container">
