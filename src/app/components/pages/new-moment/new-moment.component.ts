@@ -24,7 +24,7 @@ export class NewMomentComponent {
 
   constructor(private messagesService: MessagesService) { }
 
-  async createHandler(moment: Moment) {
+  createHandler(moment: Moment) {
     // Para ser enviado a API tem que ser convetido em JSON ou FORMDATA
     // - Se não tivesse arquivo poderia ser enviado por JSON mais no caso tem a propriedade imagem
 

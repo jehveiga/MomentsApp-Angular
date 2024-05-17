@@ -10,10 +10,10 @@
   </div>
   <div class="actions">
     <h3>Ações:</h3>
-    <a [routerLink]="['moments', momentData.id]" class="edit-btn">
+    <a [routerLink]="['/moments/edit/', momentData.id]" class="edit-btn">
       <fa-icon [icon]="faEdit"></fa-icon> Editar
     </a>
-    <button class="remove-btn">
+    <button (click)="removeHandler(momentData.id!)" class="remove-btn">
       <fa-icon [icon]="faTimes"></fa-icon> Excluir
     </button>
   </div>

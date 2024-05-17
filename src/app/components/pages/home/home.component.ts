@@ -31,8 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.moments$ = this.momentService.getMoments().pipe(
-      map((response: Response<Moment[]>) =>
-        response.data),
+      map((response: Response<Moment[]>) => response.data),
       catchError(error => {
         console.error('Erro ao obter momentos:', error);
         return [];

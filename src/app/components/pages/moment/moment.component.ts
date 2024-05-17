@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { Moment } from '../../../interfaces/Moment';
 import { Response } from '../../../interfaces/Response';
+import { MessagesService } from '../../../services/messages.service';
 import { MomentService } from '../../../services/moment.service';
 
 @Component({
@@ -29,6 +30,8 @@ export class MomentComponent implements OnInit {
   faEdit = faEdit;
 
   constructor(private momentService: MomentService,
+    private messageService: MessagesService,
+    private router: Router,
     private route: ActivatedRoute) {
 
   }
@@ -43,5 +46,11 @@ export class MomentComponent implements OnInit {
         return throwError(() => error); // Reenvia o erro para quem chamou
       })
     );
+  }
+
+  async removeHandler(id: number) {
+    await this.momentService.removeMoment(id).subscribe();
+    this.messageService.add('Momento excluído com sucesso!');
+    this.router.navigate(["/"]);
   }
 }

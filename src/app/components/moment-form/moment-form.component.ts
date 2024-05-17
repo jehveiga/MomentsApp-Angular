@@ -21,6 +21,7 @@ import { Moment } from '../../interfaces/Moment';
 export class MomentFormComponent implements OnInit {
   // Valor da varível chegará através do componente pai que passará através de parametro
   @Input() btnText!: string;
+  @Input() momentData: Moment | null = null;
 
   // Propriedade responsável para envio dos dados para o componente Pai que no caso enviará os dados do Form
   @Output() onSubmit = new EventEmitter<Moment>();
@@ -28,9 +29,9 @@ export class MomentFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.momentForm = new FormGroup({
-      id: new FormControl(""),
-      title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      description: new FormControl('', [Validators.required, Validators.maxLength(150)]),
+      id: new FormControl(this.momentData ? this.momentData.id : ''),
+      title: new FormControl(this.momentData ? this.momentData.title : '', [Validators.required, Validators.minLength(3)]),
+      description: new FormControl(this.momentData ? this.momentData.description : '', [Validators.required, Validators.maxLength(150)]),
       image: new FormControl("")
     });
   }
