@@ -7,31 +7,65 @@
   width: 60%;
   margin: 0 auto;
 
-  h1{
+  h1 {
     margin-bottom: 1em;
   }
 
-  img{
+  img {
     max-width: 500px;
     margin-bottom: 1em;
   }
 
-  .about-moment, .actions{
+  .about-moment,
+  .actions {
     width: 100%;
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid #ccc;
     padding: 1.2em;
   }
 
-  .actions{
+  .actions {
     background-color: #eee;
   }
 
-  .comments{
+  .comments {
     margin-bottom: 1em;
     padding: 1.5em 0;
+    width: 100%;
   }
 
-  .about-moment h3, .actions h3, .actions{
+  .about-moment h3,
+  .actions h3,
+  .actions {
     margin-bottom: 1em;
   }
+
+  .comment-container {
+    text-align: left;
+    border-bottom: 1px solid #EFEFEF;
+    padding: 1em 0;
+
+    .comment {
+      font-size: .9em;
+    }
+
+    .author {
+      font-size: .8em;
+
+      span{
+        font-weight: bold;
+      }
+    }
+  }
+
+  .comment-form {
+    margin-bottom: 3em;
+
+    form{
+      margin-top: 1em;
+      text-align: left;
+      max-width: 300px;
+      margin-left: 0;
+    }
+  }
+
 }
