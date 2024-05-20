@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
 
+# Sobre o projeto
+
+Este projeto Web para guardar seus momentos, feito o front-end em Angular e o back-end em C# com banco de dados SQLite.
+Podemos efetuar o cadastro de momentos, visualizar os momentos cadastrados com a imagem do evento realizado, também efetuar sua edição e exclusão, na tela da lista de momentos cadatrados podemos filtrar os momentos com um campo de busca da página.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -25,3 +30,19 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Front end
+
+- Angular
+
+## Back end
+
+- C#
+- SQLite
+- Entity Framework
+
+# Autor 
+
+Jefferson Veiga
+
+https://www.linkedin.com/in/jefferson-veiga-dev/
