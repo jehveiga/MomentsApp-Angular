@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { Comment } from '../../../interfaces/Comment';
 import { Moment } from '../../../interfaces/Moment';
 import { Response } from '../../../interfaces/Response';
+import { CommentService } from '../../../services/comment.service';
 import { MessagesService } from '../../../services/messages.service';
 import { MomentService } from '../../../services/moment.service';
 
@@ -16,7 +19,9 @@ import { MomentService } from '../../../services/moment.service';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   templateUrl: './moment.component.html',
   styleUrl: './moment.component.scss',
@@ -28,8 +33,12 @@ export class MomentComponent implements OnInit {
   moment?: Moment;
   faTimes = faTimes;
   faEdit = faEdit;
+  idMoment?: number;
+
+  commentForm!: FormGroup;
 
   constructor(private momentService: MomentService,
+    private commentService: CommentService,
     private messageService: MessagesService,
     private router: Router,
     private route: ActivatedRoute) {
@@ -37,15 +46,46 @@ export class MomentComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get("id"));
+    this.idMoment = Number(this.route.snapshot.paramMap.get("id"));
 
-    this.moment$ = this.momentService.getMomentById(id).pipe(
+    this.moment$ = this.momentService.getMomentById(this.idMoment).pipe(
       map((response: Response<Moment>) => response.data),
       catchError(error => {
         console.error('Erro ao buscar o momento:', error);
         return throwError(() => error); // Reenvia o erro para quem chamou
       })
     );
+
+    this.commentForm = new FormGroup({
+      text: new FormControl("", Validators.required),
+      username: new FormControl("", Validators.required)
+    })
+  }
+
+  get text() {
+    return this.commentForm.get("text")!;
+  }
+
+  get username() {
+    return this.commentForm.get("username")!;
+  }
+
+  async submit(commentFormDirective: FormGroupDirective) {
+    if (this.commentForm.invalid)
+      return;
+
+    const data: Comment = this.commentForm.value;
+
+    data.momentId = Number(this.idMoment);
+
+    await this.commentService.createComment(data).subscribe((comment) =>
+      this.moment!.comments?.push(comment.data)
+    );
+
+    this.messageService.add("Comentário adicionado!");
+
+    this.commentForm.reset();
+    commentFormDirective.resetForm();
   }
 
   async removeHandler(id: number) {

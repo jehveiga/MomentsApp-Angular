@@ -39,15 +39,39 @@
   </div>
   <div class="comment-form">
     <h3>Deixe um comentário</h3>
-    <form>
+    <form
+      [formGroup]="commentForm"
+      #formDir="ngForm"
+      (ngSubmit)="submit(formDir)"
+    >
       <div class="form-group">
         <label for="text">Comentário:</label>
-        <textarea placeholder="O que você quer comentar?" required></textarea>
+        <textarea
+          formControlName="text"
+          placeholder="O que você quer comentar?"
+          required
+        ></textarea>
+        <div *ngIf="text.invalid && formDir.submitted" class="validation-error">
+          <p *ngIf="text.errors?.['required'] ">O texto é obrigatório.</p>
+        </div>
       </div>
       <div class="form-group">
         <label for="username">Nome:</label>
-        <input type="text" placeholder="Digite o seu nome" />
+        <input
+          formControlName="username"
+          type="text"
+          placeholder="Digite o seu nome"
+        />
+        <div
+          *ngIf="username.invalid && formDir.submitted"
+          class="validation-error"
+        >
+          <p *ngIf="username.errors?.['required'] ">
+            O Nome do usuário é obrigatório.
+          </p>
+        </div>
       </div>
+      <input type="submit" value="Comentar!" />
     </form>
   </div>
 </div>
