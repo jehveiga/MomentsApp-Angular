@@ -7,6 +7,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Este projeto Web para guardar seus momentos, feito o front-end em Angular e o back-end em C# com banco de dados SQLite.
 Podemos efetuar o cadastro de momentos, visualizar os momentos cadastrados com a imagem do evento realizado, também efetuar sua edição e exclusão, na tela da lista de momentos cadatrados podemos filtrar os momentos com um campo de busca da página.
 
+## Visualizando Lista Momentos - demonstração da lista e da busca dos momentos
+![Apresentacao Projeto Lista](https://github.com/jehveiga/MomentsApp-Angular/blob/main/assets/apresentacao-webAngular.gif)
+
+## Criação e Edição dos Momentos - demonstração da criação e edição de momentos
+![Apresentacao Projeto Criacao e Edicao](https://github.com/jehveiga/MomentsApp-Angular/blob/main/assets/criacao-edicao.gif)
+
+## Back-End - demonstração dos end points do back-end
+![Apresentacao Projeto Back-End](https://github.com/jehveiga/MomentsApp-Angular/blob/main/assets/backend.gif)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
